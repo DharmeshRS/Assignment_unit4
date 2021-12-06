@@ -8,7 +8,7 @@ app.use(express.json())
 app.use("/users",userController)
 const start=async ()=>{
         await connect();
-
+        console.log("connection  Established");
         app.listen(port,()=>{
             console.log(`listening on port ${port}`)
         })
