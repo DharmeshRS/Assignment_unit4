@@ -1,6 +1,7 @@
 const mongoose=require('mongoose')
 require('express-validator')
 const userSchema=mongoose.Schema({
+    
     first_name:{
         type:String,
         required:true
@@ -27,3 +28,5 @@ const userSchema=mongoose.Schema({
         required:true
     }
 })
+
+module.exports=mongoose.model("User",userSchema)
