@@ -11,7 +11,7 @@ router.post("/",
     body("pincode").isLength({min:6}).withMessage("Invalid pin-code please check again"),
     body("gender").isLength({min:1}).withMessage("Gender Is Invalid"),
     body("age").isLength({min:1}).withMessage("Age is 18+"),  
-
+    
     async(req,res)=>{
 
         const errors=validationResult(req)
