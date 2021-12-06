@@ -15,7 +15,7 @@ const userSchema=mongoose.Schema({
         required:true
     },
     pincode:{
-        type:String,
+        type:Number,
         required:true
     },
     gender:{

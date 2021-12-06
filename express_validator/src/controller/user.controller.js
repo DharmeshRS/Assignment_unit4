@@ -8,7 +8,7 @@ router.post("/",
     body("first_name").isLength({min:1}).withMessage("first name is required and must be valid"),
     body("last_name").isLength({min:1}).withMessage("Last name is required and must be valid"),
     body("email").isEmail().withMessage("Email Invalid format"),
-    body("pincode").isLength({min:6}).withMessage("Invalid Pincode please check again"),
+    body("pincode").isLength({min:6}).withMessage("Invalid pin-code please check again"),
     body("gender").isLength({min:1}).withMessage("Gender Is Invalid"),
     body("age").isLength({min:1}).withMessage("Age is 18+"),  
 
