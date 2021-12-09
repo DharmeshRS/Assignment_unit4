@@ -10,6 +10,9 @@ const evaluationSchema=mongoose.Schema({
     topic_name:String,
     subject_name:String
 
+},{
+    versionKey:false,
+    timestamps:true
 })
 
 module.exports=mongoose.model("evaluation",evaluationSchema)
