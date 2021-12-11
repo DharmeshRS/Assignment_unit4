@@ -18,9 +18,18 @@ router.get("/",async(req,res)=>{
         const author_data=await authorModel.find({})
         .populate({
             path:'book',
-            populate:"section"
-        }).
-        lean()
+            select:{
+                _id:0
+            },
+            populate:{
+                path:"section",
+                select:{
+                    _id:0,
+                    section_type:1
+                }
+            }
+        })
+        .lean()
         .exec()
         res.status(201).json(author_data)
     }catch(err){
@@ -30,8 +39,20 @@ router.get("/",async(req,res)=>{
 
 router.get("/:name",async(req,res)=>{
     try{
-        const audata=await AuthorModel.find({first_name:req.params.name}).populate({path:'book',
-    populate:"section"})
+        const audata=await AuthorModel.find({first_name:req.params.name})
+        .populate({
+            path:'book',
+            select:{
+                _id:0
+            },
+            populate:{
+                path:"section",
+                select:{
+                    _id:0,
+                    section_type:1
+                }
+            }
+        })
         return res.send(audata)
     }catch(err){
         res.status(400).send(err)
