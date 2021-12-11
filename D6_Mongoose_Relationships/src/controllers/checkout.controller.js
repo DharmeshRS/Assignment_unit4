@@ -16,7 +16,13 @@ router.post("/",async(req,res)=>{
 
 router.get("/",async(req,res)=>{
     try{
-        const checkout_data=await checkoutSchema.find({}).lean().exec();
+        const checkout_data=await checkoutSchema.find({})
+        .populate({path:'book_id',
+        
+         populate:{path:'section',select:{section_type:1,_id:0}},
+        select:{body:1,_id:0}})
+        .lean().
+        exec();
         return res.status(200).send(checkout_data)
     }catch(err){
         return res.status(401).send(err)

@@ -13,7 +13,7 @@ router.post("/",async(req,res)=>{
 router.get("/",async (req,res)=>{
     // res.send("get method of book")
     try{
-        const bookdata=await bookModel.find()
+        const bookdata=await bookModel.find({}).populate('section')
         res.status(201).json(bookdata)
     }catch(err){
         res.status(400).send(err)
