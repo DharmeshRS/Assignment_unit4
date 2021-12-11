@@ -4,8 +4,8 @@ const Section=require("./section.model")
 const BookSchema=new mongoose.Schema({
     name:String,
     body:String,
-    section:{
-        type:mongoose.Schema.Types.ObjectId,
+   section:{
+         type:mongoose.Schema.Types.ObjectId,
         ref:Section
     }
 })

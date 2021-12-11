@@ -14,14 +14,15 @@ router.get("/",async (req,res)=>{
     // res.send("get method of book")
     try{
         const bookdata=await bookModel.find({})
-        .populate({
-            path:'section',
-            select:{
-                section_type:1,
-                _id:0
-            }
+        .populate('section')
+        // .populate({
+        //     path:'section',
+        //     select:{
+        //         section_type:1,
+        //         _id:0
+        //     }
 
-        })
+        // })
         res.status(201).json(bookdata)
     }catch(err){
         res.status(400).send(err)
