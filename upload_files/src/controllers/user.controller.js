@@ -28,13 +28,14 @@ router.post("/",upload.single("profile_url"),async(req,res)=>{
     }
 })
 
-router.post("/multiple",async(req,res)=>{
+router.delete("/:id",async(req,res)=>{
     try{
-        // const user=await userModel.create(req.body)
-        // return res.send(201).json(user)
-        return res.send("multiple")
+        const userdata=await userModel.findByIdAndDelete(id===req.params.id).lean().exec();
+        return res.status(201).send({msg:"Data Deleted Successfully",userdata:userdata})
     }catch(err){
         res.status(400).send(err)
     }
 })
+
+
 module.exports=router;
