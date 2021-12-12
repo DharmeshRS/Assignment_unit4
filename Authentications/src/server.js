@@ -1,14 +1,16 @@
 const mongoose=require('mongoose')
 const express=require('express')
 const { connect } = require('./configs/db')
-const {  } = require('./controllers/auth.controller')
+const { register,login } = require('./controllers/user.controller')
 
 const port=process.env.port || 8000
 
 const app=express()
 app.use(express.json())
-app.use()
-const start=()=>{
+app.post("/register",register);
+app.post("/login",login)
+
+const start=async ()=>{
     const con=await connect()
     console.log("connection Established...");
 
@@ -16,7 +18,6 @@ const start=()=>{
         console.log(`Listening On port ${port}`)
     })
 }
-
 
 module.exports=start;
 

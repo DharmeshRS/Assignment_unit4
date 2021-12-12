@@ -11,14 +11,17 @@ router.get("/",async(req,res)=>{
     }
 })
 
-router.post("/",upload.single("productImages"),async(req,res)=>{
+router.post("/",upload.single("profile_url"),async(req,res)=>{
+    console.log("pots")
+    console.log(req.body)
     try{
+        
         const user=await userModel.create({
             first_name:req.body.first_name,
             last_name:req.body.last_name,
             profile_url:req.file.path
         })
-        return res.send(201).json({data:user})
+        return res.status(201).json({data:user})
 
     }catch(err){
         res.status(400).send(err)
