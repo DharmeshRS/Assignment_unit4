@@ -34,7 +34,7 @@ router.delete("/:id", async (req, res) => {
   
       imgs.pictures.forEach((img, i) => {
         fs.unlink(profile_pic, () => {
-            console.log(`old profile_pic Deleted.`);
+            console.log("deleted")
           });
       });
       res.status(200).json({data:"Image Deleted Successfully"});
