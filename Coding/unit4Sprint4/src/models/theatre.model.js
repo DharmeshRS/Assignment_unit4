@@ -9,4 +9,4 @@ const theatreSchema=new mongoose.Schema({
     }
 })
 
-module.exports=mongoose.Model('theatre',theatreSchema)
+module.exports=mongoose.model('theatre',theatreSchema)

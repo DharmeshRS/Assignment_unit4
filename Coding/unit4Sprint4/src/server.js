@@ -1,9 +1,11 @@
 const express=require("express")
-
+const connect=require('./configs/db')
+const userController=require('./controllers/user.controller')
 const app=express()
 const port=8000
-const connect=require('./configs/db')
+
 app.use(express.json())
+app.use('/user',userController)
 const start=async ()=>{
     await connect()
     console.log("connection Established...")

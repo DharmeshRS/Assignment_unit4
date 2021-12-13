@@ -11,3 +11,12 @@ router.post('/',async(req,res)=>{
         res.status(400).send(err)
     }
 })
+
+router.get('/',async(req,res)=>{
+    try{
+        const all_movies=await movieModel.find({}).lean().exec();
+        res.status(201).json(all_movies)
+    }catch(err){
+        res.status(400).send(err)
+    }
+})

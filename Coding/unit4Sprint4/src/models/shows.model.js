@@ -18,4 +18,4 @@ const showSchema=mongoose.Schema({
     }]
 })
 
-module.exports=mongoose.Model('show',showSchema)
+module.exports=mongoose.model('show',showSchema)

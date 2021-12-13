@@ -10,3 +10,5 @@ const screenSchema=new mongoose.Schema({
         ref:theatreModel
     }]
 })
+
+module.exports=mongoose.model('screen',screenSchema)
