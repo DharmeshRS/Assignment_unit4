@@ -22,6 +22,17 @@ router.get('/',async(req,res)=>{
     }
 })
 
-router.get('/:id',asyncr)
+router.get('/:id',async(req,res)=>{
+    try{
+        const singleshow=await showModel.find({movie:{$eq:req.params.id}})
+                .populate({path:movieModel,
+                select:"name"})
+                .lean()
+                .exec();
+        res.status(201).json(singleshow)
+    }catch(err){
+        res.status(400).send(err)
+    }
+})
 
 module.exports=router
