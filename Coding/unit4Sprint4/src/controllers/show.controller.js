@@ -25,7 +25,7 @@ router.get('/',async(req,res)=>{
 router.get('/:id',async(req,res)=>{
     try{
         const singleshow=await showModel.find({movie:{$eq:req.params.id}})
-                .populate({path:movie,
+                .populate({path:"Movie",
                 select:"name"})
                 .lean()
                 .exec();

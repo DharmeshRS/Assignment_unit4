@@ -20,4 +20,12 @@ router.get('/',async(req,res)=>{
     }
 })
 
+router.get('/shows/:city',async(req,res)=>{
+    try{
+        const all_theatre=await theatreModel.find({}).lean().exec();
+        res.status(201).json(all_theatre)
+    }catch(err){
+        res.status(400).send(err)
+    }
+})
 module.exports=router

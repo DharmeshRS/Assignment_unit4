@@ -22,4 +22,13 @@ router.get('/',async(req,res)=>{
     }
 })
 
+router.get('/:show',async(req,res)=>{
+    try{
+        const all_seats=await seatModel.find().populate({path:"show",select:"total_seats"})
+        res.status(201).json(all_seats)
+    }catch(err){
+        res.status(400).send(err)
+    }
+})
+
 module.exports=router
