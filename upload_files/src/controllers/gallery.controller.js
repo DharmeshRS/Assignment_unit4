@@ -1,9 +1,9 @@
 const express=require('express');
 
 const galleryModel=require('../models/gallery.model')
-
+const upload=require('../utils/file-upload')
 const router=express.Router()
-
+const fs=require('fs')
 router.get("/",async(req,res)=>{
     try{
         const gallery_pics=await galleryModel.find({}).lean().exec()
@@ -13,13 +13,13 @@ router.get("/",async(req,res)=>{
     }
 })
 
-router.post("/",upload.array("gallery_images",3),async(req,res)=>{
+router.post("/",upload.array("pictures",3),async(req,res)=>{
     const photos = req.files.map((file) => file.path)
     try{
         const pics=await galleryModel.create(
             {
                 user:req.body.user,
-                gallery_images:photos
+                pictures:photos
             })
         return res.status(201).json(pics)
     }catch(err){
@@ -33,10 +33,14 @@ router.delete("/:id", async (req, res) => {
       var imgs = await galleryModel.findById(req.params.id);
   
       imgs.pictures.forEach((img, i) => {
-        deleteOldPic(img);
+        fs.unlink(profile_pic, () => {
+            console.log(`old profile_pic Deleted.`);
+          });
       });
       res.status(200).json({data:"Image Deleted Successfully"});
     } catch (error) {
       return res.status(401).json({ message: error.message });
     }
   })
+
+  module.exports=router;
