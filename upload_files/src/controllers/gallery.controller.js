@@ -33,7 +33,7 @@ router.delete("/:id", async (req, res) => {
       var imgs = await galleryModel.findById(req.params.id);
   
       imgs.pictures.forEach((img, i) => {
-        fs.unlink(profile_pic, () => {
+        fs.unlink(img, () => {
             console.log("deleted")
           });
       });
